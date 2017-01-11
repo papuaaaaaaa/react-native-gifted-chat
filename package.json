@@ -1,11 +1,11 @@
 {
-  "name": "react-native-gifted-chat",
-  "version": "0.0.10",
+  "name": "papua-react-native-gifted-chat",
+  "version": "0.0.1",
   "description": "The most complete chat UI for React Native",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FaridSafi/react-native-gifted-chat.git"
+    "url": "git+https://github.com/papuaaaaaaa/react-native-gifted-chat.git"
   },
   "keywords": [
     "android",
@@ -17,12 +17,12 @@
     "message",
     "chat"
   ],
-  "author": "Farid Safi",
+  "author": "papua",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FaridSafi/react-native-gifted-chat/issues"
+    "url": "https://github.com/papuaaaaaaa/react-native-gifted-chat/issues"
   },
-  "homepage": "https://github.com/FaridSafi/react-native-gifted-chat#readme",
+  "homepage": "https://github.com/papuaaaaaaa/react-native-gifted-chat#readme",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx"
   },
@@ -42,8 +42,11 @@
     "react-native-communications": "^2.1.0",
     "react-native-dismiss-keyboard": "^1.0.0",
     "react-native-invertible-scroll-view": "^1.0.0",
-    "react-native-lightbox": "oblador/react-native-lightbox#c84a8543d4511fe6a44c3d7820747c9c1bddd875",
+    "react-native-lightbox": "github:oblador/react-native-lightbox#c84a8543d4511fe6a44c3d7820747c9c1bddd875",
     "react-native-parsed-text": "^0.0.15",
     "shallowequal": "^0.2.2"
+  },
+  "directories": {
+    "example": "example"
   }
 }
