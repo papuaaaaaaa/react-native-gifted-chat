@@ -11,12 +11,12 @@ import { isSameDay, isSameUser, warnDeprecated } from './utils';
 
 export default class Day extends React.Component {
   render() {
-    if (!isSameDay(this.props.currentMessage, this.props.previousMessage)) {
+    if (!this.props.isSameDay(this.props.currentMessage, this.props.nextMessage)) {
       return (
         <View style={[styles.container, this.props.containerStyle]}>
           <View style={[styles.wrapper, this.props.wrapperStyle]}>
             <Text style={[styles.text, this.props.textStyle]}>
-              {moment(this.props.currentMessage.createdAt).locale(this.context.getLocale()).format('ll').toUpperCase()}
+              {moment(this.props.currentMessage.createdAt).locale(this.context.getLocale()).format("MM月DD日")}
             </Text>
           </View>
         </View>

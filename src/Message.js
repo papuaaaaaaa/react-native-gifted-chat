@@ -12,6 +12,15 @@ import { isSameUser, isSameDay, warnDeprecated } from './utils';
 
 export default class Message extends React.Component {
 
+  isSameBook(currentMessage = {}, diffMessage = {}) {
+    if (diffMessage.book && currentMessage.book) {
+      if (diffMessage.book.isbn === currentMessage.book.isbn) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   renderDay() {
     if (this.props.currentMessage.createdAt) {
       const {containerStyle, ...dayProps} = this.props;
@@ -42,20 +51,14 @@ export default class Message extends React.Component {
   }
 
   renderAvatar() {
-
-    if (this.props.user._id === this.props.currentMessage.user._id) {
-      return null;
-    }
-
     const {containerStyle, ...other} = this.props;
     const avatarProps = {
       ...other,
-      //TODO: remove in next major release
-      isSameUser: warnDeprecated(isSameUser),
-      isSameDay: warnDeprecated(isSameDay)
+      isSameUser: this.isSameUser,
+      isSameDay: this.isSameBook,
     };
-    return <Avatar {...avatarProps}/>;
 
+    return <Avatar {...avatarProps}/>;
   }
 
   render() {
@@ -63,11 +66,12 @@ export default class Message extends React.Component {
       <View>
         {this.renderDay()}
         <View style={[styles[this.props.position].container, {
-          marginBottom: isSameUser(this.props.currentMessage, this.props.nextMessage) ? 2 : 10,
-        }, this.props.containerStyle[this.props.position]]}>
+        marginBottom: this.isSameBook(this.props.currentMessage, this.props.previousMessage) ? 2 : 15,
+      }, this.props.containerStyle[this.props.position]]}>
           {this.props.position === 'left' ? this.renderAvatar() : null}
           {this.renderBubble()}
           {this.props.position === 'right' ? this.renderAvatar() : null}
+          {this.props.position === 'right' ? this.renderActionButton() : null}
         </View>
       </View>
     );
@@ -78,21 +82,21 @@ const styles = {
   left: StyleSheet.create({
     container: {
       flexDirection: 'row',
-      alignItems: 'flex-end',
+      alignItems: 'flex-start',
       justifyContent: 'flex-start',
       marginLeft: 8,
       marginRight: 0,
-    },
+    }
   }),
   right: StyleSheet.create({
     container: {
       flexDirection: 'row',
-      alignItems: 'flex-end',
+      alignItems: 'flex-start',
       justifyContent: 'flex-end',
       marginLeft: 0,
       marginRight: 8,
-    },
-  }),
+    }
+  })
 };
 
 Message.defaultProps = {

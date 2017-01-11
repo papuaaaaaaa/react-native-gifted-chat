@@ -3,6 +3,7 @@ import React from 'react';
 import {
   ListView,
   View,
+  ScrollView
 } from 'react-native';
 
 import shallowequal from 'shallowequal';
@@ -127,7 +128,7 @@ export default class MessageContainer extends React.Component {
   renderScrollComponent(props) {
     const invertibleScrollViewProps = this.props.invertibleScrollViewProps;
     return (
-      <InvertibleScrollView
+      <ScrollView
         {...props}
         {...invertibleScrollViewProps}
         ref={component => this._invertibleScrollViewRef = component}

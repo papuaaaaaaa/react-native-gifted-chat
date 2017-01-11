@@ -2,8 +2,8 @@ import React from 'react';
 import {
   Clipboard,
   StyleSheet,
-  TouchableWithoutFeedback,
   View,
+  TouchableOpacity
 } from 'react-native';
 
 import MessageText from './MessageText';
@@ -43,15 +43,12 @@ export default class Bubble extends React.Component {
     return null;
   }
 
-  renderMessageImage() {
-    if (this.props.currentMessage.image) {
-      const {containerStyle, wrapperStyle, ...messageImageProps} = this.props;
-      if (this.props.renderMessageImage) {
-        return this.props.renderMessageImage(messageImageProps);
-      }
-      return <MessageImage {...messageImageProps}/>;
+  renderMessageText() {
+    const {containerStyle, wrapperStyle, ...messageTextProps} = this.props;
+    if (this.props.renderMessageText) {
+      return this.props.renderMessageText(messageTextProps);
     }
-    return null;
+    return <MessageText {...messageTextProps}/>;
   }
 
   renderTime() {
@@ -101,7 +98,7 @@ export default class Bubble extends React.Component {
     return (
       <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
         <View style={[styles[this.props.position].wrapper, this.props.wrapperStyle[this.props.position], this.handleBubbleToNext(), this.handleBubbleToPrevious()]}>
-          <TouchableWithoutFeedback
+          <TouchableOpacity
             onLongPress={this.onLongPress}
             accessibilityTraits="text"
             {...this.props.touchableProps}
@@ -112,7 +109,7 @@ export default class Bubble extends React.Component {
               {this.renderMessageText()}
               {this.renderTime()}
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         </View>
       </View>
     );
