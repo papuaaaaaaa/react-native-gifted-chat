@@ -485,7 +485,7 @@ GiftedChat.defaultProps = {
   renderFooter: null,
   renderChatFooter: null,
   renderMessageText: null,
-  renderMessageImage: null,
+  renderMessageImage: () => {},
   renderComposer: null,
   renderCustomView: null,
   renderDay: null,

@@ -105,7 +105,7 @@ export default class Bubble extends React.Component {
           >
             <View>
               {this.renderCustomView()}
-              {this.renderMessageImage()}
+              {this.props.renderMessageImage()}
               {this.renderMessageText()}
               {this.renderTime()}
             </View>
@@ -164,7 +164,7 @@ Bubble.contextTypes = {
 Bubble.defaultProps = {
   touchableProps: {},
   onLongPress: null,
-  renderMessageImage: null,
+  renderMessageImage: () => {},
   renderMessageText: null,
   renderCustomView: null,
   renderTime: null,

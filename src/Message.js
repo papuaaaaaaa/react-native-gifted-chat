@@ -71,7 +71,7 @@ export default class Message extends React.Component {
           {this.props.position === 'left' ? this.renderAvatar() : null}
           {this.renderBubble()}
           {this.props.position === 'right' ? this.renderAvatar() : null}
-          {this.props.position === 'right' ? this.renderActionButton() : null}
+          {this.props.position === 'right' ? this.props.renderActionButton(this.props.currentMessage) : null}
         </View>
       </View>
     );
@@ -100,6 +100,7 @@ const styles = {
 };
 
 Message.defaultProps = {
+  renderActionButton: () => {},
   renderAvatar: null,
   renderBubble: null,
   renderDay: null,
@@ -112,6 +113,7 @@ Message.defaultProps = {
 };
 
 Message.propTypes = {
+  renderActionButton: React.PropTypes.func,
   renderAvatar: React.PropTypes.func,
   renderBubble: React.PropTypes.func,
   renderDay: React.PropTypes.func,
